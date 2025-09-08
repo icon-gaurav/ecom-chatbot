@@ -1,0 +1,20 @@
+import { NextResponse } from "next/server";
+
+let cart: any[] = []; // in-memory for now
+
+export async function POST(req: Request) {
+    const { product_id, qty } = await req.json();
+    const item = cart.find((i) => i.product_id === product_id);
+
+    if (item) {
+        item.qty += qty;
+    } else {
+        cart.push({ product_id, qty });
+    }
+
+    return NextResponse.json({ cart });
+}
+
+export async function GET() {
+    return NextResponse.json({ cart });
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "description": "A high-precision wireless mouse with ergonomic design.",
+    "price": 29.99,
+    "category": "Electronics",
+    "stock": 150,
+    "image": "images/wireless_mouse.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Bluetooth Headphones",
+    "description": "Noise-cancelling over-ear headphones with deep bass.",
+    "price": 89.99,
+    "category": "Electronics",
+    "stock": 75,
+    "image": "images/bluetooth_headphones.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Smartwatch",
+    "description": "A sleek smartwatch with fitness tracking and notifications.",
+    "price": 199.99,
+    "category": "Wearables",
+    "stock": 50,
+    "image": "images/smartwatch.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Gaming Keyboard",
+    "description": "Mechanical keyboard with customizable RGB lighting.",
+    "price": 59.99,
+    "category": "Electronics",
+    "stock": 100,
+    "image": "images/gaming_keyboard.jpg"
+  },
+  {
+    "id": 5,
+    "name": "4K Monitor",
+    "description": "27-inch 4K UHD monitor with vibrant colors and sharp details.",
+    "price": 349.99,
+    "category": "Electronics",
+    "stock": 30,
+    "image": "images/4k_monitor.jpg"
+  }
+]
