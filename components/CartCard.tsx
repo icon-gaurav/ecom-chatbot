@@ -1,16 +1,7 @@
 "use client";
 
-import { useState } from "react";
 
-type CartItem = {
-    product_id: string;
-    name: string;
-    price: number;
-    qty: number;
-    image?: string;
-};
-
-export default function Cart({items = []}: { items?: CartItem[] }) {
+export default function Cart({items = []}: { items?: any[] }) {
 
 
     const total = items?.reduce((sum, i) => sum + i.price * i.qty, 0);
