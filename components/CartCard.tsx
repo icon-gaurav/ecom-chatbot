@@ -1,7 +1,7 @@
 "use client";
 
 
-export default function Cart({items = []}: { items?: any[] }) {
+export default function Cart({items = []}: { items?: any }) {
 
 
     const total = items?.reduce((sum, i) => sum + i.price * i.qty, 0);
