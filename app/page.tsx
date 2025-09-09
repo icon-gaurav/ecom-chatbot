@@ -7,7 +7,7 @@ import {useState} from "react";
 import {Bot, User} from "lucide-react";
 
 export default function Home() {
-    const {messages, sendMessage, status, isLoading} = useChat({
+    const {messages, sendMessage, status} = useChat({
         transport: new DefaultChatTransport({
             api: '/api/chat',
         }),
@@ -125,7 +125,7 @@ export default function Home() {
                     <button
                         type="submit"
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 shadow-lg disabled:opacity-50"
-                        disabled={isLoading}
+                        disabled={status !== 'ready' || !input.trim()}
                     >
                         Ask
                     </button>
