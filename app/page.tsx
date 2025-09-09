@@ -5,6 +5,8 @@ import {useChat} from "@ai-sdk/react";
 import {DefaultChatTransport} from "ai";
 import {useState} from "react";
 import {Bot, User} from "lucide-react";
+import ProductCard from "@/components/ProductCard";
+import Cart from "@/components/CartCard";
 
 export default function Home() {
     const {messages, sendMessage, status} = useChat({
@@ -40,7 +42,8 @@ export default function Home() {
                                     </div>
                                 </div>
                             )}
-                            <div className={` py-[5px] px-[10px] rounded-[10px] ${m.role === "user" ? "bg-blue-100" : "bg-gray-200"}`}>
+                            <div
+                                className={`w-full flex py-[5px] px-[10px] rounded-[10px] ${m.role === "user" ? "bg-blue-100" : "bg-gray-200"}`}>
                                 {m.parts.map((part, index) => {
                                         switch (part?.type) {
                                             case 'step-start':
@@ -53,14 +56,26 @@ export default function Home() {
                                             case 'tool-fetchCatalog':
                                                 switch (part?.state) {
                                                     case 'input-streaming':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}> 🛍️ Fetching products… </span>;
                                                     case 'input-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}> 🛍️ Fetching products… </span>;
                                                     case 'output-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.output, null, 2)}</pre>;
+                                                        let products = part.output
+
+                                                        return products?.length > 0 ?
+                                                           <div className={"gap-4"}>
+                                                                {products?.map((product: any) => {
+                                                                    return <ProductCard product={product} addToCart={async (productId, productName) => {
+                                                                        await sendMessage({text: `Add ${productName} to my cart`})
+                                                                    }}
+                                                                                        key={product.id}/>
+                                                                })}
+                                                                    </div>
+                                                            :
+                                                            <div key={`tool-${index}`} className="text-gray-600">No
+                                                                products found.</div>
                                                     case 'output-error':
                                                         return <div key={`tool-${index}`}>Error: {part.errorText}</div>;
                                                 }
@@ -68,14 +83,17 @@ export default function Home() {
                                             case 'tool-addToCart':
                                                 switch (part?.state) {
                                                     case 'input-streaming':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}>
+                                                            ➕ Adding item to cart…
+                                                        </span>;
                                                     case 'input-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}>
+                                                            ➕ Adding item to cart…
+                                                        </span>;
                                                     case 'output-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.output, null, 2)}</pre>;
+                                                        return <Cart key={`tool-${index}}` } items={part.output}/>;
                                                     case 'output-error':
                                                         return <div key={`tool-${index}`}>Error: {part.errorText}</div>;
                                                 }
@@ -83,11 +101,11 @@ export default function Home() {
                                             case 'tool-checkoutCart':
                                                 switch (part?.state) {
                                                     case 'input-streaming':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}>💳 Processing checkout…</span>;
                                                     case 'input-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.input, null, 2)}</pre>;
+                                                        return <span className="italic text-gray-600"
+                                                                     key={`tool-${index}`}>💳 Processing checkout…</span>;
                                                     case 'output-available':
                                                         return <pre
                                                             key={`tool-${index}`}>{JSON.stringify(part.output, null, 2)}</pre>;
