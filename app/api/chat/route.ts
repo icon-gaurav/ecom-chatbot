@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
                     }
                 },
                 checkoutCart: {
-                    description: "Processes the order and simulates checkout.",
+                    description: "Process checkout and initiate payment",
                     inputSchema: z.object({}),
                     execute: async () => {
                         return await checkoutCart();

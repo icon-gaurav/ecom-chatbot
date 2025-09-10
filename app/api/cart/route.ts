@@ -1,22 +1,16 @@
 import { NextResponse } from "next/server";
 import products from "@/data/products.json";
-let cart: any[] = []; // in-memory for now
+import {CartItem, cartStore} from "@/lib/cartStore";
 
 export async function POST(req: Request) {
     const { product_id, qty } = await req.json();
     const productId = parseInt(product_id)
     let product = products.find((p) => p.id === productId);
-    const item = cart.find((i) => i.product_id === productId);
+    cartStore.addItem({ productId, qty, ...product } as CartItem)
 
-    if (item) {
-        item.qty += qty;
-    } else {
-        cart.push({ product_id, qty, ...product });
-    }
-
-    return NextResponse.json(cart);
+    return NextResponse.json(cartStore.getCart());
 }
 
 export async function GET() {
-    return NextResponse.json(cart);
+    return NextResponse.json(cartStore.getCart());
 }

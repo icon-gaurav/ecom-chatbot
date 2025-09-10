@@ -7,6 +7,7 @@ import {useState} from "react";
 import {Bot, User} from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/CartCard";
+import Checkout, {OrderItem} from "@/components/Checkout";
 
 export default function Home() {
     const {messages, sendMessage, status} = useChat({
@@ -99,6 +100,7 @@ export default function Home() {
                                                 }
                                                 break;
                                             case 'tool-checkoutCart':
+                                                const order = part?.output as OrderItem
                                                 switch (part?.state) {
                                                     case 'input-streaming':
                                                         return <span className="italic text-gray-600"
@@ -107,8 +109,7 @@ export default function Home() {
                                                         return <span className="italic text-gray-600"
                                                                      key={`tool-${index}`}>💳 Processing checkout…</span>;
                                                     case 'output-available':
-                                                        return <pre
-                                                            key={`tool-${index}`}>{JSON.stringify(part.output, null, 2)}</pre>;
+                                                        return <Checkout order={order} key={`tool-${index}`}/>;
                                                     case 'output-error':
                                                         return <div key={`tool-${index}`}>Error: {part.errorText}</div>;
                                                 }

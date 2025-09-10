@@ -15,7 +15,7 @@ export default function Cart({items = []}: { items?: any }) {
             <ul className="space-y-3">
                 {items.map((item) => (
                     <li
-                        key={item.product_id}
+                        key={item.productId}
                         className="flex items-center justify-between gap-2 border-b pb-2"
                     >
                         <div className="flex items-center gap-2">
