@@ -29,9 +29,10 @@ export default function Cart({items = []}: { items?: any }) {
                             <div>
                                 <p className="font-medium">{item.name}</p>
                                 <p className="text-sm text-gray-500">
-                                    ${item.price} × {item.qty}
+                                    ${item?.price} × {item.qty} =  ${item?.price * item.qty}
                                 </p>
                             </div>
+
                         </div>
 
                     </li>
@@ -39,9 +40,9 @@ export default function Cart({items = []}: { items?: any }) {
             </ul>
 
             {items.length > 0 && (
-                <div className="mt-4 border-t pt-3 flex justify-between font-bold">
+                <div className="pt-3 flex justify-between font-bold">
                     <span>Total -&nbsp;</span>
-                    <span>${total||0}</span>
+                    <span>${total || 0}</span>
                 </div>
             )}
         </div>

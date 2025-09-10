@@ -4,8 +4,9 @@ let cart: any[] = []; // in-memory for now
 
 export async function POST(req: Request) {
     const { product_id, qty } = await req.json();
-    let product = products.find((p) => p.id === product_id);
-    const item = cart.find((i) => i.product_id === product_id);
+    const productId = parseInt(product_id)
+    let product = products.find((p) => p.id === productId);
+    const item = cart.find((i) => i.product_id === productId);
 
     if (item) {
         item.qty += qty;

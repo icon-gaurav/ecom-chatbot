@@ -12,7 +12,6 @@ export default function ProductCard({product, addToCart}: { product: any, addToC
         addToCart(product?.id, product?.name)
         setAdded(true)
         setAdding(false);
-        alert(`${product.name} added to cart!`);
     };
 
     return (

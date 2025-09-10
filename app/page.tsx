@@ -62,7 +62,7 @@ export default function Home() {
                                                         return <span className="italic text-gray-600"
                                                                      key={`tool-${index}`}> 🛍️ Fetching products… </span>;
                                                     case 'output-available':
-                                                        let products = part.output
+                                                        let products = part.output as any
 
                                                         return products?.length > 0 ?
                                                            <div className={"gap-4"}>
@@ -93,7 +93,7 @@ export default function Home() {
                                                             ➕ Adding item to cart…
                                                         </span>;
                                                     case 'output-available':
-                                                        return <Cart key={`tool-${index}}` } items={part.output}/>;
+                                                        return <Cart key={`tool-${index}}` } items={part.output as any[]}/>;
                                                     case 'output-error':
                                                         return <div key={`tool-${index}`}>Error: {part.errorText}</div>;
                                                 }
