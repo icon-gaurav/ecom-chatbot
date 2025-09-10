@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { product_id, qty } = await req.json();
     const productId = parseInt(product_id)
     let product = products.find((p) => p.id === productId);
-    cartStore.addItem({ productId, qty, ...product } as CartItem)
+    cartStore.addItem({ productId: product_id, qty, ...product } as CartItem)
 
     return NextResponse.json(cartStore.getCart());
 }

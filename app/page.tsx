@@ -7,7 +7,8 @@ import {useState} from "react";
 import {Bot, User} from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import Cart from "@/components/CartCard";
-import Checkout, {OrderItem} from "@/components/Checkout";
+import Checkout from "@/components/Checkout";
+import {OrderItem} from "@/lib/orderStore";
 
 export default function Home() {
     const {messages, sendMessage, status} = useChat({
@@ -68,7 +69,7 @@ export default function Home() {
                                                         return products?.length > 0 ?
                                                            <div className={"gap-4"}>
                                                                 {products?.map((product: any) => {
-                                                                    return <ProductCard product={product} addToCart={async (productId, productName) => {
+                                                                    return <ProductCard product={product} addToCart={async (productId:string, productName:string) => {
                                                                         await sendMessage({text: `Add ${productName} to my cart`})
                                                                     }}
                                                                                         key={product.id}/>
