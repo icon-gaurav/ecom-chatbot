@@ -139,7 +139,7 @@ export default function Home() {
                         className="flex-1 border border-gray-300 shadow-lg rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-gray-400"
                         value={input}
                         disabled={status !== 'ready'}
-                        placeholder="Ask about products... e.g. 'Show me shoes under $200'"
+                        placeholder="Ask about products... e.g. 'Show me shoes under 200 rupees'"
                         onChange={e => setInput(e.target.value)}
                     />
                     <button
