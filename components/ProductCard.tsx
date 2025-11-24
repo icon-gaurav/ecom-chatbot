@@ -22,7 +22,7 @@ export default function ProductCard({product, addToCart}: { product: any, addToC
                 className="w-32 h-32 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold">{product.name}</h3>
-            <p className="text-gray-600">${product?.price}</p>
+            <p className="text-gray-600">₹{product?.price}</p>
             <button
                 onClick={handleAddToCart}
                 disabled={adding || added}
