@@ -67,7 +67,7 @@ export default function Home() {
                                                         let products = part.output as any
 
                                                         return products?.length > 0 ?
-                                                           <div className={"flex gap-4"} key={"products-list"}>
+                                                           <div className={"flex flex-wrap gap-4"} key={"products-list"}>
                                                                 {products?.map((product: any) => {
                                                                     return <ProductCard product={product} addToCart={async (productId:string, productName:string) => {
                                                                         await sendMessage({text: `Add ${productName} to my cart`})
